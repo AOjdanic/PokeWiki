@@ -2,21 +2,70 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import Card from "../components/Card";
 import Pagination from "../components/Pagination";
 import Search from "../components/Search";
+import { useContext } from "react";
+import SearchContext from "../context/search-context";
 
 /* eslint-disable react-refresh/only-export-components */
 function Home() {
+  const { searchIsOn, searchResults, sorting } = useContext(SearchContext);
   const { page } = useParams();
   const { results: pokemons } = useLoaderData();
-
   return (
     <>
       <Search />
-      {pokemons.map((pokemon) => (
-        <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
-          <Card pokemon={pokemon} />
-        </Link>
-      ))}
-      <Pagination page={page} />
+      {!searchIsOn &&
+        pokemons.map((pokemon) => (
+          <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+            <Card pokemon={pokemon} />
+          </Link>
+        ))}
+
+      {searchIsOn &&
+        searchResults !== "empty" &&
+        sorting === "default" &&
+        searchResults?.map((pokemon) => (
+          <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+            <Card pokemon={pokemon} />
+          </Link>
+        ))}
+
+      {searchIsOn &&
+        searchResults !== "empty" &&
+        sorting === "ascending" &&
+        searchResults
+          ?.slice()
+          .sort((a, b) => {
+            if (b.name > a.name) return -1;
+
+            if (b.name < a.name) return 1;
+
+            return 0;
+          })
+          .map((pokemon) => (
+            <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+              <Card pokemon={pokemon} />
+            </Link>
+          ))}
+
+      {searchIsOn &&
+        searchResults !== "empty" &&
+        sorting === "descending" &&
+        searchResults
+          ?.slice()
+          .sort((a, b) => {
+            if (b.name > a.name) return 1;
+
+            if (b.name < a.name) return -1;
+
+            return 0;
+          })
+          .map((pokemon) => (
+            <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+              <Card pokemon={pokemon} />
+            </Link>
+          ))}
+
+      {!searchIsOn && <Pagination page={page} />}
     </>
   );
 }
