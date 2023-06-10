@@ -26,8 +26,6 @@ function Search() {
 
       if (filteredPokemon.length === 0) return setSearchResults("empty");
 
-      console.log(filteredPokemon);
-
       return setSearchResults(filteredPokemon);
     } catch (err) {
       throw new Error(err.message);

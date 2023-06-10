@@ -10,9 +10,11 @@ function Home() {
   const { searchIsOn, searchResults, sorting } = useContext(SearchContext);
   const { page } = useParams();
   const { results: pokemons } = useLoaderData();
+
   return (
     <>
       <Search />
+
       {!searchIsOn &&
         pokemons.map((pokemon) => (
           <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
