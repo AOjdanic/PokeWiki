@@ -10,12 +10,12 @@ function Details() {
       {id > 1 && (
         <button
           onClick={() => navigate(`/pokemon/${id - 1}`)}
-          className="btn pb-3 absolute right-3/4 top-2/4	"
+          className="btn pb-3 absolute right-3/4 top-2/4"
         >
           <span>&larr;</span>
         </button>
       )}
-      <article className="bg-orange-900 max-w-md p-8 flex justify-center flex-col items-center text-orange-100 text-3xl mx-auto rounded-2xl gap-y-8">
+      <article className="bg-orange-900 max-w-md p-8 flex justify-center flex-col items-center text-orange-100 text-3xl mx-auto rounded-2xl gap-y-8 shadow-2xl">
         <h2 className="text-6xl">{name}</h2>
         <img
           src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${

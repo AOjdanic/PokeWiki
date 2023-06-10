@@ -17,6 +17,7 @@ function Card({ pokemon: { name, url } }) {
 
   const selectAsFavorite = (e) => {
     e.preventDefault();
+
     let storageFavs = JSON.parse(localStorage.getItem("favorites"));
     console.log(storageFavs);
 
@@ -38,7 +39,7 @@ function Card({ pokemon: { name, url } }) {
   };
 
   return (
-    <figure className="bg-orange-500 max-w-lg p-4 rounded-lg relative">
+    <figure className="bg-orange-500 max-w-lg p-4 rounded-lg relative hover:scale-110 transition-all shadow-card-shadow">
       <img
         src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${
           pokeId < 100 ? pokeId.toString().padStart(3, "0") : pokeId
