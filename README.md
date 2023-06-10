@@ -3,8 +3,10 @@ This is a small project application about pokemons, made possible with the use o
 Live Demo: https://pokewiki-25298.firebaseapp.com/pokemons/1
 
 Screenshots of the project:
-![pokewikiLanding](https://github.com/AOjdanic/PokeWiki/assets/115574745/427d94d3-53b3-40ed-baac-0298413f156c)
-![pokewikiDetails](https://github.com/AOjdanic/PokeWiki/assets/115574745/4a5aed6d-289a-4c5b-9ae3-3b8bf5dfd08d)
+
+![pokewikiLanding](https://github.com/AOjdanic/PokeWiki/assets/115574745/59b5289a-8f10-419c-8169-4e59853e39be)
+![pokewikiDetails](https://github.com/AOjdanic/PokeWiki/assets/115574745/73a4e8ec-4f33-4afb-8d43-803164cf3f1a)
+
 
 This project has been built with following technologies:
 
@@ -21,7 +23,8 @@ The build command in Vite is 'npm run build' and the folder containing build fil
 NOTE: Since this project uses Tailwind CSS which heavily relies on different classes, it is a recommendation to install an extension which hides classnames for improved readability. 
 One such extension is called Inline fold made by Mohammed Alamri 
 
-![inlinefold](https://github.com/AOjdanic/PokeWiki/assets/115574745/1a900bb7-bd12-417e-954b-80ba816b9b6a)
+![inlinefold](https://github.com/AOjdanic/PokeWiki/assets/115574745/a17f67b9-09fc-4a89-8c4e-ff39251b5485)
+
 
 The application itself enables you to browse over 36 pages of different pokemons that exist in pokemon universe. 
 
