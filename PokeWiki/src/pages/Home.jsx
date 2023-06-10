@@ -14,7 +14,7 @@ function Home() {
   return (
     <>
       <Search />
-      <div className="grid grid-cols-3 justify-items-center gap-y-14">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3  justify-items-center gap-y-14">
         {!searchIsOn &&
           pokemons.map((pokemon) => (
             <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>

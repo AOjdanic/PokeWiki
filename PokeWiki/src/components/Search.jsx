@@ -44,8 +44,8 @@ function Search() {
   };
   return (
     <>
-      <div className="flex justify-center items-center gap-4 my-8 ">
-        <span className="relative w-128 ">
+      <div className="flex flex-col  sm:flex-row justify-center items-center gap-4 my-8 ">
+        <span className="relative max-w-50  sm:w-128 ">
           <input
             className="text-2xl py-2 px-6 rounded-lg bg-orange-400 placeholder:text-orange-50 font-semibold w-full text-orange-700 outline-0"
             value={query}
@@ -73,7 +73,7 @@ function Search() {
       </div>
 
       <div
-        className={`flex justify-center items-center gap-8 my-12 ${
+        className={`flex flex-col sm:flex-row justify-center items-center gap-8 my-12 ${
           searchIsOn && searchResults !== "empty" ? "" : "invisible"
         } `}
       >

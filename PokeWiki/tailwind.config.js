@@ -9,12 +9,15 @@ export default {
       },
       width: {
         128: "70rem",
+        100: "30rem",
       },
+
       scale: {
         200: "2",
       },
       maxWidth: {
         100: "62.5rem",
+        50: "60rem",
       },
     },
   },
