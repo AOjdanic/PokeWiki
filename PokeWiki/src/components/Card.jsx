@@ -38,17 +38,21 @@ function Card({ pokemon: { name, url } }) {
   };
 
   return (
-    <figure>
+    <figure className="bg-orange-500 max-w-lg p-4 rounded-lg relative">
       <img
         src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${
           pokeId < 100 ? pokeId.toString().padStart(3, "0") : pokeId
         }.png`}
-        alt="Pokemon image"
+        alt={`image of ${name}`}
       />
-      <figcaption>{name}</figcaption>
+      <figcaption className="text-3xl text-center text-orange-50">
+        {name}
+      </figcaption>
       <HeartIcon
         onClick={selectAsFavorite}
-        className={`h-6 w-6 ${favorite ? "fill-red-800 stroke-red-800" : ""}`}
+        className={`h-8 w-8 ${
+          favorite ? "fill-red-800 stroke-red-800" : ""
+        } absolute top-5 right-5`}
       />
     </figure>
   );

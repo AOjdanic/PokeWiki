@@ -1,14 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import SearchContext from "../context/search-context";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
-  const { setSorting, setSearchIsOn, setSearchResults, searchResults } =
-    useContext(SearchContext);
+  const {
+    setSorting,
+    setSearchIsOn,
+    setSearchResults,
+    searchIsOn,
+    searchResults,
+  } = useContext(SearchContext);
   const [query, setQuery] = useState("");
+  let navigate = useNavigate();
+
   const findPokemonsByName = async () => {
     try {
+      if (query === "") return;
+
       setSearchIsOn(true);
+
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=864`);
 
       if (!res.ok) {
@@ -33,17 +44,44 @@ function Search() {
   };
   return (
     <>
-      <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        type="text"
-        placeholder="Search for your favorite pokemon"
-      />
-      {searchResults === "empty" && <p>No pokemon found. Please try again</p>}
+      <div className="flex justify-center items-center gap-4 my-8 ">
+        <span className="relative w-128 ">
+          <input
+            className="text-2xl py-2 px-6 rounded-lg bg-orange-400 placeholder:text-orange-50 font-semibold w-full text-orange-700 outline-0"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            type="text"
+            placeholder="Find your favorite pokemon"
+          />
 
-      <div>
-        <label htmlFor="none">none:</label>
+          {searchIsOn && (
+            <button
+              className="btn tracking-wider absolute rounded-l-none right-0"
+              onClick={() => {
+                setSearchIsOn(false);
+                navigate("/");
+              }}
+            >
+              Clear
+            </button>
+          )}
+        </span>
+
+        <button className="btn" onClick={findPokemonsByName}>
+          Search
+        </button>
+      </div>
+
+      <div
+        className={`flex justify-center items-center gap-8 my-12 ${
+          searchIsOn && searchResults !== "empty" ? "" : "invisible"
+        } `}
+      >
+        <label className="text-orange-950 text-xl font-semibold" htmlFor="none">
+          None:
+        </label>
         <input
+          className="accent-orange-900 scale-200 "
           onClick={(e) => setSorting(e.target.value)}
           defaultChecked
           type="radio"
@@ -51,16 +89,28 @@ function Search() {
           id="none"
           value="default"
         />
-        <label htmlFor="ascending">A-Z:</label>
+        <label
+          className="text-orange-950 text-xl font-semibold"
+          htmlFor="ascending"
+        >
+          A-Z:
+        </label>
         <input
+          className="accent-orange-900 scale-200 "
           onClick={(e) => setSorting(e.target.value)}
           type="radio"
           name="sorter"
           id="ascending"
           value="ascending"
         />
-        <label htmlFor="descending">Z-A:</label>
+        <label
+          className="text-orange-950 text-xl font-semibold"
+          htmlFor="descending"
+        >
+          Z-A:
+        </label>
         <input
+          className="accent-orange-900 scale-200 "
           onClick={(e) => setSorting(e.target.value)}
           type="radio"
           name="sorter"
@@ -68,7 +118,6 @@ function Search() {
           value="descending"
         />
       </div>
-      <button onClick={findPokemonsByName}>Search</button>
     </>
   );
 }

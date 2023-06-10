@@ -14,59 +14,64 @@ function Home() {
   return (
     <>
       <Search />
-
-      {!searchIsOn &&
-        pokemons.map((pokemon) => (
-          <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
-            <Card pokemon={pokemon} />
-          </Link>
-        ))}
-
-      {searchIsOn &&
-        searchResults !== "empty" &&
-        sorting === "default" &&
-        searchResults?.map((pokemon) => (
-          <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
-            <Card pokemon={pokemon} />
-          </Link>
-        ))}
-
-      {searchIsOn &&
-        searchResults !== "empty" &&
-        sorting === "ascending" &&
-        searchResults
-          ?.slice()
-          .sort((a, b) => {
-            if (b.name > a.name) return -1;
-
-            if (b.name < a.name) return 1;
-
-            return 0;
-          })
-          .map((pokemon) => (
+      <div className="grid grid-cols-3 justify-items-center gap-y-14">
+        {!searchIsOn &&
+          pokemons.map((pokemon) => (
             <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
               <Card pokemon={pokemon} />
             </Link>
           ))}
 
-      {searchIsOn &&
-        searchResults !== "empty" &&
-        sorting === "descending" &&
-        searchResults
-          ?.slice()
-          .sort((a, b) => {
-            if (b.name > a.name) return 1;
-
-            if (b.name < a.name) return -1;
-
-            return 0;
-          })
-          .map((pokemon) => (
+        {searchIsOn &&
+          searchResults !== "empty" &&
+          sorting === "default" &&
+          searchResults?.map((pokemon) => (
             <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
               <Card pokemon={pokemon} />
             </Link>
           ))}
 
+        {searchIsOn &&
+          searchResults !== "empty" &&
+          sorting === "ascending" &&
+          searchResults
+            ?.slice()
+            .sort((a, b) => {
+              if (b.name > a.name) return -1;
+
+              if (b.name < a.name) return 1;
+
+              return 0;
+            })
+            .map((pokemon) => (
+              <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+                <Card pokemon={pokemon} />
+              </Link>
+            ))}
+
+        {searchIsOn &&
+          searchResults !== "empty" &&
+          sorting === "descending" &&
+          searchResults
+            ?.slice()
+            .sort((a, b) => {
+              if (b.name > a.name) return 1;
+
+              if (b.name < a.name) return -1;
+
+              return 0;
+            })
+            .map((pokemon) => (
+              <Link key={pokemon.name} to={`/pokemon/${pokemon.name}`}>
+                <Card pokemon={pokemon} />
+              </Link>
+            ))}
+      </div>
+      {searchIsOn && searchResults === "empty" && (
+        <p className="text-6xl text-orange-50 bg-orange-950 p-10 text-center rounded-3xl mx-auto max-w-100">
+          ⚠️ There are no pokemons with that name.
+        </p>
+      )}
       {!searchIsOn && <Pagination page={page} />}
     </>
   );
